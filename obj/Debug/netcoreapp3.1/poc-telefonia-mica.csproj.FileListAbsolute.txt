@@ -22,3 +22,5 @@ C:\Users\Michelle Rodrigues\source\repos\poc-telefonia-mica\bin\Debug\netcoreapp
 C:\Users\Michelle Rodrigues\source\repos\poc-telefonia-mica\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Michelle Rodrigues\source\repos\poc-telefonia-mica\obj\Debug\netcoreapp3.1\poc-telefonia-mica.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Michelle Rodrigues\source\repos\poc-telefonia-mica\obj\Debug\netcoreapp3.1\poc-telefonia-mica.csproj.CopyComplete
+C:\Users\Michelle Rodrigues\source\repos\poc-telefonia-mica\bin\Debug\netcoreapp3.1\poc-telefonia-mica.xml
+C:\Users\Michelle Rodrigues\source\repos\poc-telefonia-mica\obj\Debug\netcoreapp3.1\poc-telefonia-mica.xml

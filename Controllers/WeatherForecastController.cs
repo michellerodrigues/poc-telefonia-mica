@@ -22,7 +22,10 @@ namespace poc_telefonia_mica.Controllers
         {
             _logger = logger;
         }
-
+        
+        /// <summary>
+        /// Get a WeatherForecast
+        /// </summary>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
