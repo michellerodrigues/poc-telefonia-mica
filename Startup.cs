@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
+using Telefonia.Crud.Infra.Database.Context;
 
 namespace poc_telefonia_mica
 {
@@ -53,7 +49,12 @@ namespace poc_telefonia_mica
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
-            
+
+            services.AddDbContext<TelefoniaDatabaseContext>(
+                option => option.UseSqlServer(Configuration.GetConnectionString("Default")),
+                ServiceLifetime.Scoped
+           );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
