@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\3 - Infra\Telefonia.Crud.Infra.Database\Telefonia.Crud.Infra.Database.csproj" />
     <ProjectReference Include="..\Telefonia.Crud.Services.Messages\Telefonia.Crud.Services.Messages.csproj" />
   </ItemGroup>
 

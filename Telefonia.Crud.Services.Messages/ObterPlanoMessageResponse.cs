@@ -4,6 +4,6 @@ namespace Telefonia.Crud.Services.Messages
 {
     public class ObterPlanoMessageResponse
     {
-       PlanoMessage Plano { get; set; }
+       public PlanoMessage Plano { get; set; }
     }
 }

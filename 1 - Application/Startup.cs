@@ -9,6 +9,8 @@ using System;
 using System.IO;
 using System.Reflection;
 using Telefonia.Crud.Infra.Database.Context;
+using Telefonia.Crud.Infra.Database.Repository;
+using Telefonia.Crud.Services;
 
 namespace poc_telefonia_mica
 {
@@ -55,6 +57,9 @@ namespace poc_telefonia_mica
                 ServiceLifetime.Scoped
            );
 
+
+            services.AddScoped<IPlanoServices, PlanoServices>();
+            services.AddScoped<IPlanoTelefoniaRepository, PlanoTelefoniaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

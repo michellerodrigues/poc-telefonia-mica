@@ -9,7 +9,7 @@ namespace Telefonia.Crud.Infra.Database.Repository
 
         List<Plano> BuscarPlanoPorOperadora(Operadora operadora, int ddd);
 
-        Plano BuscarPlanoPorId(string idPlano, int ddd);
+        Plano BuscarPlanoPorId(int idPlano, int ddd);
 
         List<Plano> ListarPlanosPorDDD(int ddd);
     }

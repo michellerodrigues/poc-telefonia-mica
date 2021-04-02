@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\3 - Infra\Telefonia.Crud.Infra.Database\Telefonia.Crud.Infra.Database.csproj" />
+    <ProjectReference Include="..\Telefonia.Crud.Services\Telefonia.Crud.Services.csproj" />
   </ItemGroup>
 
   

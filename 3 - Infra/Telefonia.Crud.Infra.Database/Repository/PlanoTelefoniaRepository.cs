@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Telefonia.Crud.Infra.Database.Context;
 using Telefonia.Crud.Infra.Database.Model;
 
@@ -11,9 +12,10 @@ namespace Telefonia.Crud.Infra.Database.Repository
 
         }
 
-        public Plano BuscarPlanoPorId(string idPlano, int ddd)
+        public Plano BuscarPlanoPorId(int idPlano, int dddId)
         {
-            throw new System.NotImplementedException();
+            var ddd = _context.Ddds.Where(_ => _.DddId == dddId).FirstOrDefault();
+            return _context.Planos.Where(_ => _.PlanoId == idPlano && _.DddsAtendidos.Contains(ddd)).FirstOrDefault();
         }
 
         public List<Plano> BuscarPlanoPorOperadora(Operadora operadora, int ddd)
