@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using Telefonia.Crud.Infra.Database.Context;
 using Telefonia.Crud.Infra.Database.Model;
@@ -9,28 +10,26 @@ namespace Telefonia.Crud.Infra.Database.Repository
     {
         public PlanoTelefoniaRepository(TelefoniaDatabaseContext context) : base(context)
         {
-
         }
 
-        public Plano BuscarPlanoPorId(int idPlano, int dddId)
+        public Plano BuscarPlanoPorId(int idPlano, Ddd ddd)
         {
-            var ddd = _context.Ddds.Where(_ => _.DddId == dddId).FirstOrDefault();
-            return _context.Planos.Where(_ => _.PlanoId == idPlano && _.DddsAtendidos.Contains(ddd)).FirstOrDefault();
+            return _context.Planos.Include(_ => _.Operadora).Include(_ => _.Tipo).Where(_ => _.PlanoId == idPlano && _.DddsAtendidos.Contains(ddd)).FirstOrDefault();
         }
 
-        public List<Plano> BuscarPlanoPorOperadora(Operadora operadora, int ddd)
+        public List<Plano> BuscarPlanoPorOperadora(Operadora operadora, Ddd ddd)
         {
-            throw new System.NotImplementedException();
+            return _context.Planos.Include(_ => _.Operadora).Include(_ => _.Tipo).Where(_ => _.Operadora == operadora && _.DddsAtendidos.Contains(ddd)).ToList();
         }
 
-        public List<Plano> BuscarPlanoPorTipo(TipoPlano tipo, int ddd)
+        public List<Plano> BuscarPlanoPorTipo(TipoPlano tipo, Ddd ddd)
         {
-            throw new System.NotImplementedException();
+            return _context.Planos.Include(_ => _.Tipo).Include(_ => _.Operadora).Where(_ => _.Tipo.Id == tipo.Id && _.DddsAtendidos.Contains(ddd)).ToList();
         }
 
-        public List<Plano> ListarPlanosPorDDD(int ddd)
+        public List<Plano> ListarPlanosPorDDD(Ddd ddd)
         {
-            throw new System.NotImplementedException();
+            return _context.Planos.Include(_ => _.Operadora).Include(_ => _.Tipo).Where(_ => _.DddsAtendidos.Contains(ddd)).ToList();
         }
     }
 }
