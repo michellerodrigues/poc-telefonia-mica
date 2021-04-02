@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 using Telefonia.Crud.Infra.Database.Context;
 
 namespace poc_telefonia_mica
 {
-    #pragma warning disable CS1591
+#pragma warning disable CS1591
     public class Program
     {
         public static void Main(string[] args)
