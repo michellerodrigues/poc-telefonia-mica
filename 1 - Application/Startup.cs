@@ -60,6 +60,9 @@ namespace poc_telefonia_mica
 
             services.AddScoped<IPlanoServices, PlanoServices>();
             services.AddScoped<IPlanoTelefoniaRepository, PlanoTelefoniaRepository>();
+            services.AddScoped<IDddPlanoRepository, DddPlanoRepository>();
+            services.AddScoped<ITipoPlanoRepository, TipoPlanoRepository>();
+            services.AddScoped<IOperadoraPlanoRepository, OperadoraPlanoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
