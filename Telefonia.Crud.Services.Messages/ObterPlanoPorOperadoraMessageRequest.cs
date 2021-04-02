@@ -2,7 +2,7 @@
 {
     public class ObterPlanoPorOperadoraMessageRequest
     {
-        public string Operadora { get; set; }
+        public int OperadoraId { get; set; }
 
         public int Ddd { get; set; }
     }

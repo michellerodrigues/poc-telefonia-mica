@@ -2,7 +2,7 @@
 {
     public class ObterPlanoPorTipoMessageRequest
     {
-        public string TipoPlano { get; set; }
+        public int TipoPlanoId { get; set; }
 
         public int Ddd { get; set; }
     }
