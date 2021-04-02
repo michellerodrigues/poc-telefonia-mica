@@ -52,6 +52,14 @@ namespace Telefonia.Crud.Services
                         Plano = planoMessage
                     };
                 }
+                else
+                {
+                    throw new Exception("Plano não existe na base de dados");
+                }
+            }
+            else
+            {
+                throw new Exception("DDD não existe na base de dados");
             }
 
             return response;
@@ -67,6 +75,10 @@ namespace Telefonia.Crud.Services
             {
                 var planosDisponiveis = _planoTelefoniaRepository.ListarPlanosPorDDD(ddd);
 
+                if(planosDisponiveis==null || !planosDisponiveis.Any())
+                {
+                    throw new Exception("DDD não possui planos disponíveis");
+                }
                 response.Ddd = request.Ddd;
 
                 foreach (var plano in planosDisponiveis)
@@ -81,6 +93,10 @@ namespace Telefonia.Crud.Services
                     };
                     response.PlanosDisponiveis.Add(planoMessage);
                 }
+            }
+            else
+            {
+                throw new Exception("DDD não existe na base de dados");
             }
             return response;
         }
@@ -97,6 +113,11 @@ namespace Telefonia.Crud.Services
                 {
                     response.Operadora = operadora.OperadoraNome;
                     var planosDisponiveis = _planoTelefoniaRepository.BuscarPlanoPorOperadora(operadora, ddd);
+                    
+                    if (planosDisponiveis == null || !planosDisponiveis.Any())
+                    {
+                        throw new Exception("DDD não possui planos disponíveis para esta operadora");
+                    }
 
                     foreach (var plano in planosDisponiveis)
                     {
@@ -111,7 +132,15 @@ namespace Telefonia.Crud.Services
                         response.PlanosDisponiveis.Add(planoMessage);
                     }
                 }
+                else
+                {
+                    throw new Exception("Operadora não existe na base de dados");
+                }
 
+            }
+            else
+            {
+                throw new Exception("DDD não existe na base de dados");
             }
             return response;
         }
@@ -130,6 +159,11 @@ namespace Telefonia.Crud.Services
                     response.TipoPlano = tipoPlano.Tipo;
                     var planosDisponiveis = _planoTelefoniaRepository.BuscarPlanoPorTipo(tipoPlano, ddd);
 
+                    if (planosDisponiveis == null || !planosDisponiveis.Any())
+                    {
+                        throw new Exception("DDD não possui planos disponíveis para este tipo de plano");
+                    }
+
                     foreach (var plano in planosDisponiveis)
                     {
                         var planoMessage = new PlanoMessage()
@@ -144,6 +178,10 @@ namespace Telefonia.Crud.Services
                     }
                 }
 
+            }
+            else
+            {
+                throw new Exception("DDD não existe na base de dados");
             }
             return response;
         }
