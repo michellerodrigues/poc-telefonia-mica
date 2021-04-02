@@ -12,5 +12,7 @@ namespace Telefonia.Crud.Infra.Database.Repository
         Plano BuscarPlanoPorId(int idPlano, Ddd ddd);
 
         List<Plano> ListarPlanosPorDDD(Ddd ddd);
+
+        void IncluirPlano(Plano plano);
     }
 }

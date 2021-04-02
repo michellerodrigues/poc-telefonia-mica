@@ -12,6 +12,11 @@ namespace Telefonia.Crud.Infra.Database.Repository
         {
         }
 
+        public void IncluirPlano(Plano plano)
+        {
+            Create(plano);
+        }
+
         public Plano BuscarPlanoPorId(int idPlano, Ddd ddd)
         {
             return _context.Planos.Include(_ => _.Operadora).Include(_ => _.Tipo).Where(_ => _.PlanoId == idPlano && _.DddsAtendidos.Contains(ddd)).FirstOrDefault();

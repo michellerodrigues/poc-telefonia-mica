@@ -1,4 +1,5 @@
-﻿using Telefonia.Crud.Infra.Database.Model;
+﻿using System.Linq;
+using Telefonia.Crud.Infra.Database.Model;
 
 namespace Telefonia.Crud.Infra.Database.Context
 {
@@ -8,7 +9,10 @@ namespace Telefonia.Crud.Infra.Database.Context
         {
             context.Database.EnsureCreated();
 
-                       //Operadoras
+            if (context.Operadoras.Any())
+            {
+                return;
+            }
 
             var vivo = new Operadora()
             {

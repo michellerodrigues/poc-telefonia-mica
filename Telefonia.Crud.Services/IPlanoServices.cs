@@ -11,5 +11,7 @@ namespace Telefonia.Crud.Services
         ObterPlanoMessageResponse BuscarPlanoPorId(ObterPlanoMessageRequest request);
 
         ObterPlanoPorDDDMessageResponse ListarPlanosPorDDD(ObterPlanoPorDDDMessageRequest request);
+
+        void CadastrarPlano(CadastrarPlanoMessageRequest request);
     }
 }

@@ -11,5 +11,6 @@ namespace Telefonia.Crud.Services.Messages
         public decimal Valor { get; set; }
         public string TipoPlano { get; set; }
         public string Operadora { get; set; }
+        public int Ddd { get; set; }
     }
 }

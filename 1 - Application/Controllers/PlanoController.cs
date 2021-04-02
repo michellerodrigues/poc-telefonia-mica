@@ -19,6 +19,8 @@ namespace Telefonia.Crud.WebApi.Controllers
         }
         /// <summary>
         /// ObterPlanoDDD
+        /// Ex: ddd  = 11,21,24,41 
+        /// Ex: PlanoID: 1,2,3...
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -30,6 +32,7 @@ namespace Telefonia.Crud.WebApi.Controllers
 
         /// <summary>
         /// ListarPlanosPorDDD
+        /// Ex: ddd  = 11,21,24,41 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -41,6 +44,8 @@ namespace Telefonia.Crud.WebApi.Controllers
 
         /// <summary>
         /// ObterPlanoPorOperadora
+        /// Ex: ddd  = 11,21,24,41 
+        /// Ex Operadora: 1 (vivo), 2 (claro), 3 (tim)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -52,6 +57,8 @@ namespace Telefonia.Crud.WebApi.Controllers
 
         /// <summary>
         /// ObterPlanoPorTipo
+        /// Ex: ddd  = 11,21,24,41 
+        /// Ex: Tipo Plano 1 (controle), 2 (pós-pago), 3 (pré-pago)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -60,5 +67,18 @@ namespace Telefonia.Crud.WebApi.Controllers
         {
             return this._planoServices.ObterPlanoPorTipo(request);
         }
+
+
+        /// <summary>
+        /// CriarPlano
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPut("CriarPlano")]
+        public void CriarPlano([FromBody]CadastrarPlanoMessageRequest request)
+        {
+            this._planoServices.CadastrarPlano(request);
+        }
+
     }
 }

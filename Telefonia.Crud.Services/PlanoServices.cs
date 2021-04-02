@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Telefonia.Crud.Infra.Database.Model;
 using Telefonia.Crud.Infra.Database.Repository;
 using Telefonia.Crud.Services.Messages;
 
@@ -11,16 +12,19 @@ namespace Telefonia.Crud.Services
         private readonly IPlanoTelefoniaRepository _planoTelefoniaRepository;
         private readonly IOperadoraPlanoRepository _operadoraPlanoRepository;
         private readonly ITipoPlanoRepository _tipoPlanoRepository;
+        private readonly IPlanoServiceMessageConverter _planoServiceMessageConverter;
 
         public PlanoServices(IDddPlanoRepository dDDTelefoniaRepository,
             IPlanoTelefoniaRepository planoTelefoniaRepository,
             IOperadoraPlanoRepository operadoraPlanoRepository,
-            ITipoPlanoRepository tipoPlanoRepository)
+            ITipoPlanoRepository tipoPlanoRepository,
+            IPlanoServiceMessageConverter planoServiceMessageConverter)
         {
             _dDDTelefoniaRepository = dDDTelefoniaRepository;
             _planoTelefoniaRepository = planoTelefoniaRepository;
             _operadoraPlanoRepository = operadoraPlanoRepository;
             _tipoPlanoRepository = tipoPlanoRepository;
+            _planoServiceMessageConverter = planoServiceMessageConverter;
         }
 
         public ObterPlanoMessageResponse BuscarPlanoPorId(ObterPlanoMessageRequest request)
@@ -36,14 +40,7 @@ namespace Telefonia.Crud.Services
             {
                 if (plano != null)
                 {
-                    var planoMessage = new PlanoMessage()
-                    {
-                        FranquiaInternet = plano.FranquiaInternet,
-                        Min = plano.Min,
-                        Operadora = plano.Operadora?.OperadoraNome,
-                        TipoPlano = plano.Tipo?.Tipo,
-                        Valor = plano.Valor
-                    };
+                    var planoMessage = _planoServiceMessageConverter.ConvertTo(plano, ddd.DDD);
 
                     response = new ObterPlanoMessageResponse()
                     {
@@ -75,7 +72,7 @@ namespace Telefonia.Crud.Services
             {
                 var planosDisponiveis = _planoTelefoniaRepository.ListarPlanosPorDDD(ddd);
 
-                if(planosDisponiveis==null || !planosDisponiveis.Any())
+                if (planosDisponiveis == null || !planosDisponiveis.Any())
                 {
                     throw new Exception("DDD não possui planos disponíveis");
                 }
@@ -83,14 +80,7 @@ namespace Telefonia.Crud.Services
 
                 foreach (var plano in planosDisponiveis)
                 {
-                    var planoMessage = new PlanoMessage()
-                    {
-                        FranquiaInternet = plano.FranquiaInternet,
-                        Min = plano.Min,
-                        Operadora = plano.Operadora?.OperadoraNome,
-                        TipoPlano = plano.Tipo?.Tipo,
-                        Valor = plano.Valor
-                    };
+                    var planoMessage = _planoServiceMessageConverter.ConvertTo(plano, ddd.DDD);
                     response.PlanosDisponiveis.Add(planoMessage);
                 }
             }
@@ -113,7 +103,7 @@ namespace Telefonia.Crud.Services
                 {
                     response.Operadora = operadora.OperadoraNome;
                     var planosDisponiveis = _planoTelefoniaRepository.BuscarPlanoPorOperadora(operadora, ddd);
-                    
+
                     if (planosDisponiveis == null || !planosDisponiveis.Any())
                     {
                         throw new Exception("DDD não possui planos disponíveis para esta operadora");
@@ -121,14 +111,7 @@ namespace Telefonia.Crud.Services
 
                     foreach (var plano in planosDisponiveis)
                     {
-                        var planoMessage = new PlanoMessage()
-                        {
-                            FranquiaInternet = plano.FranquiaInternet,
-                            Min = plano.Min,
-                            Operadora = plano.Operadora?.OperadoraNome,
-                            TipoPlano = plano.Tipo?.Tipo,
-                            Valor = plano.Valor
-                        };
+                        var planoMessage = _planoServiceMessageConverter.ConvertTo(plano, ddd.DDD);
                         response.PlanosDisponiveis.Add(planoMessage);
                     }
                 }
@@ -166,14 +149,7 @@ namespace Telefonia.Crud.Services
 
                     foreach (var plano in planosDisponiveis)
                     {
-                        var planoMessage = new PlanoMessage()
-                        {
-                            FranquiaInternet = plano.FranquiaInternet,
-                            Min = plano.Min,
-                            Operadora = plano.Operadora?.OperadoraNome,
-                            TipoPlano = plano.Tipo?.Tipo,
-                            Valor = plano.Valor
-                        };
+                        var planoMessage = _planoServiceMessageConverter.ConvertTo(plano, ddd.DDD);
                         response.PlanosDisponiveis.Add(planoMessage);
                     }
                 }
@@ -186,5 +162,41 @@ namespace Telefonia.Crud.Services
             return response;
         }
 
+        public void CadastrarPlano(CadastrarPlanoMessageRequest request)
+        {
+            var ddd = _dDDTelefoniaRepository.BuscarDDDPorNumero(request.Plano.Ddd);
+
+            var tipoPlano = _tipoPlanoRepository.BuscarTipoPlanoPorNome(request.Plano.TipoPlano);
+
+            var operadora = _operadoraPlanoRepository.BuscarOperadoraPlanoPorNome(request.Plano.Operadora);
+
+            var plano = new Plano()
+            {
+                FranquiaInternet = request.Plano.FranquiaInternet,
+                Min = request.Plano.Min,
+                Valor = request.Plano.Valor,
+                Tipo = tipoPlano!=null? tipoPlano :(new TipoPlano() { Tipo = request.Plano.TipoPlano }),
+                Operadora = operadora != null ? operadora : (new Operadora() { OperadoraNome = request.Plano.Operadora }),
+            };
+
+            if (ddd == null)
+            {
+                var dddNew = new Ddd()
+                {
+                    DDD = request.Plano.Ddd
+                };
+                
+                plano.DddsAtendidos.Add(dddNew);
+                dddNew.PlanosDisponiveis.Add(plano);
+            }
+            else
+            {
+                plano.DddsAtendidos.Add(ddd);
+                ddd.PlanosDisponiveis.Add(plano);
+            }
+
+            _planoTelefoniaRepository.IncluirPlano(plano);
+
+        }
     }
 }
