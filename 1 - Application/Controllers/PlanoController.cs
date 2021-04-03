@@ -17,6 +17,30 @@ namespace Telefonia.Crud.WebApi.Controllers
             _logger = logger;
             _planoServices = planoServices;
         }
+
+        /// <summary>
+        /// CriarPlano
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPut("CriarPlano")]
+        public void CriarPlano([FromBody]CadastrarPlanoMessageRequest request)
+        {
+            this._planoServices.CadastrarPlano(request);
+        }
+
+
+        /// <summary>
+        /// DeletarPlano
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpDelete("DeletarPlano")]
+        public void DeletarPlano([FromBody]DeletarPlanoMessageRequest request)
+        {
+            this._planoServices.DeletarPlano(request);
+        }
+
         /// <summary>
         /// ObterPlanoDDD
         /// Ex: ddd  = 11,21,24,41 
@@ -69,16 +93,6 @@ namespace Telefonia.Crud.WebApi.Controllers
         }
 
 
-        /// <summary>
-        /// CriarPlano
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPut("CriarPlano")]
-        public void CriarPlano([FromBody]CadastrarPlanoMessageRequest request)
-        {
-            this._planoServices.CadastrarPlano(request);
-        }
 
     }
 }

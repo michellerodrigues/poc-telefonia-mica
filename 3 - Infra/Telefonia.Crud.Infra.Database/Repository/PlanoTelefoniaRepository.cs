@@ -17,6 +17,15 @@ namespace Telefonia.Crud.Infra.Database.Repository
             Create(plano);
         }
 
+        public void DeletarPlano(int planoId)
+        {
+            var plano = _context.Planos.Where(_=>_.PlanoId == planoId).FirstOrDefault();
+            if(plano!=null)
+                Remove(plano);
+
+        }
+
+
         public Plano BuscarPlanoPorId(int idPlano, Ddd ddd)
         {
             return _context.Planos.Include(_ => _.Operadora).Include(_ => _.Tipo).Where(_ => _.PlanoId == idPlano && _.DddsAtendidos.Contains(ddd)).FirstOrDefault();

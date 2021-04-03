@@ -198,5 +198,10 @@ namespace Telefonia.Crud.Services
             _planoTelefoniaRepository.IncluirPlano(plano);
 
         }
+
+        public void DeletarPlano(DeletarPlanoMessageRequest request)
+        {
+            _planoTelefoniaRepository.DeletarPlano(request.IdPlano);
+        }
     }
 }
