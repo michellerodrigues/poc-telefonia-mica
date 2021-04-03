@@ -14,5 +14,6 @@ namespace Telefonia.Crud.Services
 
         void CadastrarPlano(CadastrarPlanoMessageRequest request);
         void DeletarPlano(DeletarPlanoMessageRequest request);
+        void AtualizarPlano(AtualizarPlanoMessageRequest request);
     }
 }

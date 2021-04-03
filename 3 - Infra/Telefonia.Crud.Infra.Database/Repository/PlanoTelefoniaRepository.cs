@@ -25,6 +25,11 @@ namespace Telefonia.Crud.Infra.Database.Repository
 
         }
 
+        public void AtualizarPlano(Plano planoFind)
+        {
+            Update(planoFind);
+        }
+
 
         public Plano BuscarPlanoPorId(int idPlano, Ddd ddd)
         {

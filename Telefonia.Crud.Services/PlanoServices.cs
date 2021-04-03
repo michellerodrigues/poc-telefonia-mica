@@ -203,5 +203,59 @@ namespace Telefonia.Crud.Services
         {
             _planoTelefoniaRepository.DeletarPlano(request.IdPlano);
         }
+
+        public void AtualizarPlano(AtualizarPlanoMessageRequest request)
+        {
+            var tipoPlano = _tipoPlanoRepository.BuscarTipoPlanoPorNome(request.PlanoUpdate.TipoPlano);
+
+            if (tipoPlano == null)
+            {
+                throw new Exception("Tipo de plano não existe na base de dados");
+            }
+            
+            var operadora = _operadoraPlanoRepository.BuscarOperadoraPlanoPorNome(request.PlanoUpdate.Operadora);
+            if (operadora == null)
+            {
+                throw new Exception("Operadora do plano não existe na base de dados");
+            }
+
+            var dddUpdate = _dDDTelefoniaRepository.BuscarDDDPorNumero(request.PlanoUpdate.Ddd);
+            if (dddUpdate == null)
+            {
+                throw new Exception("DDD do planoUpdate não existe na base de dados");
+            }
+            else
+            {
+                var ddd = _dDDTelefoniaRepository.BuscarDDDPorNumero(request.Ddd);
+                if (ddd == null)
+                {
+                    throw new Exception("DDD do plano não existe na base de dados");
+                }
+
+                var planoFind = _planoTelefoniaRepository.BuscarPlanoPorId(request.IdPlano, ddd);
+
+                if (planoFind == null)
+                {
+                    throw new Exception("Plano não existe na base de dados");
+                }
+
+                ddd.PlanosDisponiveis.Remove(planoFind);
+
+                _dDDTelefoniaRepository.AtualizarDDD(ddd);
+
+                planoFind.FranquiaInternet = request.PlanoUpdate.FranquiaInternet;
+                planoFind.Min = request.PlanoUpdate.Min;
+                planoFind.Valor = request.PlanoUpdate.Valor;
+                planoFind.Tipo = tipoPlano;
+                planoFind.Operadora = operadora;
+
+                if (!planoFind.DddsAtendidos.Contains(dddUpdate))
+                {
+                    planoFind.DddsAtendidos.Add(dddUpdate);
+                }
+
+                _planoTelefoniaRepository.AtualizarPlano(planoFind);
+            }
+        }
     }
 }

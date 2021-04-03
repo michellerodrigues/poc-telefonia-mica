@@ -4,7 +4,7 @@ namespace Telefonia.Crud.Infra.Database.Repository
 {
     public interface ITipoPlanoRepository
     {
-        public TipoPlano BuscarTipoPlanoPorId(int idTipoPlano);
-        public TipoPlano BuscarTipoPlanoPorNome(string tipoPlano);
+        TipoPlano BuscarTipoPlanoPorId(int idTipoPlano);
+        TipoPlano BuscarTipoPlanoPorNome(string tipoPlano);
     }
 }

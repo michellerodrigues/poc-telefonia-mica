@@ -4,6 +4,7 @@ namespace Telefonia.Crud.Infra.Database.Repository
 {
     public interface IDddPlanoRepository
     {
-        public Ddd BuscarDDDPorNumero(int ddd);
+        Ddd BuscarDDDPorNumero(int ddd);
+        void AtualizarDDD(Ddd ddd);
     }
 }

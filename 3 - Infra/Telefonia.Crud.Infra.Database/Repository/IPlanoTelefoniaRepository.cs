@@ -15,5 +15,6 @@ namespace Telefonia.Crud.Infra.Database.Repository
 
         void IncluirPlano(Plano plano);
         void DeletarPlano(int idPlano);
+        void AtualizarPlano(Plano planoFind);
     }
 }

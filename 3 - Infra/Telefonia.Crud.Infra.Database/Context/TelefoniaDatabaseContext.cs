@@ -19,9 +19,6 @@ namespace Telefonia.Crud.Infra.Database.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Plano>()
-            .HasKey(c => new { c.PlanoId, c.FranquiaInternet, c.Min, c.Valor});
-
             base.OnModelCreating(builder);
         }
     }

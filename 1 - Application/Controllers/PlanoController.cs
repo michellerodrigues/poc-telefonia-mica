@@ -41,6 +41,20 @@ namespace Telefonia.Crud.WebApi.Controllers
             this._planoServices.DeletarPlano(request);
         }
 
+
+        /// <summary>
+        /// DeletarPlano
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPatch("AtualizarPlano")]
+        public void AtualizarPlano([FromBody]AtualizarPlanoMessageRequest request)
+        {
+            this._planoServices.AtualizarPlano(request);
+        }
+
+
+
         /// <summary>
         /// ObterPlanoDDD
         /// Ex: ddd  = 11,21,24,41 
@@ -91,8 +105,5 @@ namespace Telefonia.Crud.WebApi.Controllers
         {
             return this._planoServices.ObterPlanoPorTipo(request);
         }
-
-
-
     }
 }

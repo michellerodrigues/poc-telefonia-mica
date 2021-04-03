@@ -16,5 +16,11 @@ namespace Telefonia.Crud.Infra.Database.Repository
         {
             return _context.Ddds.Include(_=>_.PlanosDisponiveis).Where(_ => _.DDD == ddd).FirstOrDefault();
         }
+
+        public void AtualizarDDD(Ddd ddd)
+        {
+            Update(ddd);
+        }
+
     }
 }
