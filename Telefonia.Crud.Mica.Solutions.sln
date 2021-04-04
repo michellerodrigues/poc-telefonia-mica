@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telefonia.Crud.Services", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telefonia.Crud.Infra", "Telefonia.Crud.Infra", "{61337791-C689-4B59-85EE-503FD57F34F3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telefonia.Crud.WebApi.Test", "Telefonia.Crud.WebApi.Test", "{9F064ED0-561A-4737-AF32-5BD87D3688CA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telefonia.Crud.Tests", "Telefonia.Crud.Tests", "{9F064ED0-561A-4737-AF32-5BD87D3688CA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telefonia.Crud.Infra.Database", "Telefonia.Crud.Infra\Telefonia.Crud.Infra.Database\Telefonia.Crud.Infra.Database.csproj", "{59D91727-BCAC-48AF-AD57-26496B654E7C}"
 EndProject
@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telefonia.Crud.Services.Mes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telefonia.Crud.WebApi", "Telefonia.Crud.WebApi\Telefonia.Crud.WebApi.csproj", "{45F323D2-DD4A-4B7E-B6E2-B39EBD89A10C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telefonia.Crud.WebApi.Test", "Telefonia.Crud.WebApi.Test\Telefonia.Crud.WebApi.Test\Telefonia.Crud.WebApi.Test.csproj", "{E0DA7798-FA54-4944-8A78-BE59B5C0E793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telefonia.Crud.WebApi", "Telefonia.Crud.WebApi.Test\Telefonia.Crud.WebApi.Test\Telefonia.Crud.WebApi.csproj", "{E0DA7798-FA54-4944-8A78-BE59B5C0E793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telefonia.Crud.Services.Test", "Telefonia.Crud.WebApi.Test\Telefonia.Crud.Services.Test\Telefonia.Crud.Services.Test.csproj", "{1748F220-CFFC-4E83-9A85-FC9ABAA82673}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{E0DA7798-FA54-4944-8A78-BE59B5C0E793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0DA7798-FA54-4944-8A78-BE59B5C0E793}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0DA7798-FA54-4944-8A78-BE59B5C0E793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1748F220-CFFC-4E83-9A85-FC9ABAA82673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1748F220-CFFC-4E83-9A85-FC9ABAA82673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1748F220-CFFC-4E83-9A85-FC9ABAA82673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1748F220-CFFC-4E83-9A85-FC9ABAA82673}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{CEEF2410-07CF-4FDA-8DCC-F5B6C16F39CC} = {E9D5B3EE-2983-457E-9062-F13F1985A9C8}
 		{45F323D2-DD4A-4B7E-B6E2-B39EBD89A10C} = {FF68D7F1-D33A-40AF-800C-14220E0AE7CC}
 		{E0DA7798-FA54-4944-8A78-BE59B5C0E793} = {9F064ED0-561A-4737-AF32-5BD87D3688CA}
+		{1748F220-CFFC-4E83-9A85-FC9ABAA82673} = {9F064ED0-561A-4737-AF32-5BD87D3688CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68732E4E-A7FB-46AD-BA18-B50A750E3630}
