@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\3 - Infra\Telefonia.Crud.Infra.Database\Telefonia.Crud.Infra.Database.csproj" />
+    <ProjectReference Include="..\..\Telefonia.Crud.Infra\Telefonia.Crud.Infra.Database\Telefonia.Crud.Infra.Database.csproj" />
     <ProjectReference Include="..\Telefonia.Crud.Services.Messages\Telefonia.Crud.Services.Messages.csproj" />
   </ItemGroup>
 
